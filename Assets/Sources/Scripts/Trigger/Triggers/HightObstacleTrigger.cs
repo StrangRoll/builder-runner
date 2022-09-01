@@ -5,10 +5,10 @@ using UnityEngine.Events;
 
 public class HightObstacleTrigger : Trigger
 {
-    public event UnityAction DestroyBricksConstruction;
+    public event UnityAction HighObstacleEnter;
 
     protected override void OnEnter(ITriggered triggered)
     {
-        DestroyBricksConstruction?.Invoke();
+        HighObstacleEnter?.Invoke();
     }
 }

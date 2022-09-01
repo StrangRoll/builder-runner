@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public abstract class Trigger : MonoBehaviour 
 {
     private Collider _collider;
-    private bool _isEnable = true;
 
     public event UnityAction Enter;
 
@@ -18,9 +17,8 @@ public abstract class Trigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out ITriggered triggered) && _isEnable)
+        if (other.TryGetComponent(out ITriggered triggered))
         {
-            _isEnable = false;
             Enter?.Invoke();
             OnEnter(triggered);
         }
