@@ -8,7 +8,7 @@ public abstract class Trigger : MonoBehaviour
 {
     private Collider _collider;
 
-    public event UnityAction Enter;
+    public event UnityAction<ITriggered> Enter;
 
     private void Awake()
     {
@@ -19,7 +19,7 @@ public abstract class Trigger : MonoBehaviour
     {
         if (other.TryGetComponent(out ITriggered triggered))
         {
-            Enter?.Invoke();
+            Enter?.Invoke(triggered);
             OnEnter(triggered);
         }
     }

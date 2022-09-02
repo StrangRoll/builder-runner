@@ -1,4 +1,4 @@
 public interface ITriggered
 {
-    void OnEnter();
+    void OnEnter(ITriggered triggered);
 }

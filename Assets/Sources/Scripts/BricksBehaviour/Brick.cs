@@ -1,18 +1,37 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
-public class Brick : MonoBehaviour
+public class Brick : MonoBehaviour, ITriggered
 {
+    private IEnumerable<Trigger> _triggers;
 
-    private void OnTriggerEnter(Collider other)
+    [Inject]
+    private void Construct(IEnumerable<Trigger> triggers)
     {
-        if (other.TryGetComponent(out Brick brick) == false)
-            OnHighObstacleEnter();
+        foreach (Trigger trigger in triggers)
+            trigger.Enter += OnEnter;
+
+        _triggers = triggers;
     }
 
-    private void OnHighObstacleEnter()
+    private void OnDestroy()
     {
-        var rigidbody = gameObject.AddComponent<Rigidbody>();
+        UnsubscribeAll();
+    }
+
+    public void OnEnter(ITriggered triggered)
+    {
+        if (triggered == this)
+        {
+            var rigidbody = gameObject.AddComponent<Rigidbody>();
+            UnsubscribeAll();
+        }
+    }
+
+    private void UnsubscribeAll()
+    {
+        foreach (Trigger trigger in _triggers)
+            trigger.Enter -= OnEnter;
     }
 }
