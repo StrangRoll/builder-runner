@@ -14,6 +14,5 @@ public class Brick : MonoBehaviour
     private void OnHighObstacleEnter()
     {
         var rigidbody = gameObject.AddComponent<Rigidbody>();
-        Debug.Log(1);
     }
 }
