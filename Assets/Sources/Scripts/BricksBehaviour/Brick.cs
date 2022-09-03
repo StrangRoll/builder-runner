@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Zenject;
 
 public class Brick : MonoBehaviour, ITriggered
 {
     private IEnumerable<Trigger> _triggers;
+
+    public event UnityAction BrickRemoved;
 
     [Inject]
     private void Construct(IEnumerable<Trigger> triggers)
@@ -25,6 +28,7 @@ public class Brick : MonoBehaviour, ITriggered
         if (triggered == this)
         {
             var rigidbody = gameObject.AddComponent<Rigidbody>();
+            BrickRemoved?.Invoke();
             UnsubscribeAll();
         }
     }

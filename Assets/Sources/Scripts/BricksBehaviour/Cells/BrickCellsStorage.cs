@@ -10,7 +10,6 @@ public class BrickCellsStorage : MonoBehaviour
 
     private BrickCell[] _brickCells;
 
-
     [Inject]
     private void Construct(BrickCell[] brickCells)
     {
@@ -21,9 +20,33 @@ public class BrickCellsStorage : MonoBehaviour
     {
         for (int i = 0; i < _brickCells.Length; i++)
         {
-            var brick = _diContainer.InstantiatePrefab(_brickPrefab, _parent);
+            _brickCells[i].CellNulled += OnCellNulled;
+            var brick = _diContainer.InstantiatePrefab(_brickPrefab, _parent).GetComponent<Brick>();
             brick.transform.position += _brickCells[i].Position;
             brick.transform.rotation = _brickPrefab.transform.rotation;
+            _brickCells[i].AddBrick(brick);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        for (int i = 0; i < _brickCells.Length; i++)
+        {
+            _brickCells[i].CellNulled -= OnCellNulled;
+        }
+    }
+
+    private void OnCellNulled(int column, int number)
+    {
+        for (int i = 0; i < _brickCells.Length; i++)
+        {
+            if (_brickCells[i].Column == column)
+            {
+                if (_brickCells[i].Number > number)
+                {
+                    _brickCells[i].DropBrick();
+                }
+            }
         }
     }
 }
