@@ -27,10 +27,16 @@ public class Brick : MonoBehaviour, ITriggered
     {
         if (triggered == this)
         {
-            var rigidbody = gameObject.AddComponent<Rigidbody>();
+            gameObject.AddComponent<Rigidbody>();
             BrickRemoved?.Invoke();
             UnsubscribeAll();
         }
+    }
+
+    public void Fall()
+    {
+        gameObject.AddComponent<Rigidbody>();
+        UnsubscribeAll();
     }
 
     private void UnsubscribeAll()

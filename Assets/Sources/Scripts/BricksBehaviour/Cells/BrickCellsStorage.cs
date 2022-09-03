@@ -44,7 +44,7 @@ public class BrickCellsStorage : MonoBehaviour
             {
                 if (_brickCells[i].Number > number)
                 {
-                    _brickCells[i].DropBrick();
+                    _brickCells[i].TryDropBrick();
                 }
             }
         }

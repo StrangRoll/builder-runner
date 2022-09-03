@@ -28,16 +28,25 @@ public class BrickCell
         _brick.BrickRemoved += OnBrickRemoved;
     }
 
-    public void DropBrick()
+    public void TryDropBrick()
     {
-        _brick.OnEnter(_brick);
+        if (_brick != null)
+        {
+            _brick.Fall();
+            ResetCell();
+        }
     }
 
     private void OnBrickRemoved()
     {
+        ResetCell();
+        CellNulled?.Invoke(Column, Number);
+    }
+
+    private void ResetCell()
+    {
         _brick.BrickRemoved -= OnBrickRemoved;
         _brick = null;
         IsFill = false;
-        CellNulled?.Invoke(Column, Number);
     }
 }
