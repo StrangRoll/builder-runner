@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-public class BrickCellsStorageInstaller : MonoInstaller
+public class BrickCellsInstaller : MonoInstaller
 {
     [SerializeField] private int _maxCellsCount;
     [SerializeField] private int _cellsPerSide;

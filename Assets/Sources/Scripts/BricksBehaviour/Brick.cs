@@ -3,45 +3,30 @@ using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
-public class Brick : MonoBehaviour, ITriggered
+[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(Rigidbody))]
+public class Brick : MonoBehaviour
 {
-    private IEnumerable<Trigger> _triggers;
+    private Rigidbody _rigidbody;
 
-    public event UnityAction BrickRemoved;
+    public event UnityAction BrickFell;
 
-    [Inject]
-    private void Construct(IEnumerable<Trigger> triggers)
+    private void Start()
     {
-        foreach (Trigger trigger in triggers)
-            trigger.Enter += OnEnter;
-
-        _triggers = triggers;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnDestroy()
+    private void OnCollisionEnter(Collision other)
     {
-        UnsubscribeAll();
-    }
-
-    public void OnEnter(ITriggered triggered)
-    {
-        if (triggered == this)
+        if (other.gameObject.TryGetComponent(out Obstacle obstacle))
         {
-            gameObject.AddComponent<Rigidbody>();
-            BrickRemoved?.Invoke();
-            UnsubscribeAll();
+            Fall();
+            BrickFell?.Invoke();
         }
     }
 
     public void Fall()
     {
-        gameObject.AddComponent<Rigidbody>();
-        UnsubscribeAll();
-    }
-
-    private void UnsubscribeAll()
-    {
-        foreach (Trigger trigger in _triggers)
-            trigger.Enter -= OnEnter;
+        _rigidbody.constraints = RigidbodyConstraints.None;
     }
 }

@@ -1,12 +1,10 @@
 using UnityEngine;
 using Zenject;
 
-public class BrickCellsStorage : MonoBehaviour
+public class BrickCellsFilledChanger : MonoBehaviour
 {
     [SerializeField] private Brick _brickPrefab;
     [SerializeField] private Transform _parent;
-
-    [Inject] private DiContainer _diContainer;
 
     private BrickCell[] _brickCells;
 
@@ -20,11 +18,7 @@ public class BrickCellsStorage : MonoBehaviour
     {
         for (int i = 0; i < _brickCells.Length; i++)
         {
-            _brickCells[i].CellNulled += OnCellNulled;
-            var brick = _diContainer.InstantiatePrefab(_brickPrefab, _parent).GetComponent<Brick>();
-            brick.transform.position += _brickCells[i].Position;
-            brick.transform.rotation = _brickPrefab.transform.rotation;
-            _brickCells[i].AddBrick(brick);
+            AddBrick(_brickCells[i]);
         }
     }
 
@@ -32,11 +26,11 @@ public class BrickCellsStorage : MonoBehaviour
     {
         for (int i = 0; i < _brickCells.Length; i++)
         {
-            _brickCells[i].CellNulled -= OnCellNulled;
+            _brickCells[i].BrickFell -= OnBrickFell;
         }
     }
 
-    private void OnCellNulled(int column, int number)
+    private void OnBrickFell(int column, int number)
     {
         for (int i = 0; i < _brickCells.Length; i++)
         {
@@ -48,5 +42,14 @@ public class BrickCellsStorage : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void AddBrick(BrickCell brickCell)
+    {
+        brickCell.BrickFell += OnBrickFell;
+        var brick = Instantiate(_brickPrefab, _parent);
+        brick.transform.position += brickCell.Position;
+        brick.transform.rotation = _brickPrefab.transform.rotation;
+        brickCell.AddBrick(brick);
     }
 }

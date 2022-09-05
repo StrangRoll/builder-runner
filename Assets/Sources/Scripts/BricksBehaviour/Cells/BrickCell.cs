@@ -11,7 +11,7 @@ public class BrickCell
 
     public bool IsFill { get; private set; }
 
-    public event UnityAction<int, int> CellNulled;
+    public event UnityAction<int, int> BrickFell;
 
     public BrickCell(Vector3 position, int column, int number)
     {
@@ -25,7 +25,7 @@ public class BrickCell
     {
         _brick = brick;
         IsFill = true;
-        _brick.BrickRemoved += OnBrickRemoved;
+        _brick.BrickFell += OnBrickFell;
     }
 
     public void TryDropBrick()
@@ -37,15 +37,15 @@ public class BrickCell
         }
     }
 
-    private void OnBrickRemoved()
+    private void OnBrickFell()
     {
         ResetCell();
-        CellNulled?.Invoke(Column, Number);
+        BrickFell?.Invoke(Column, Number);
     }
 
     private void ResetCell()
     {
-        _brick.BrickRemoved -= OnBrickRemoved;
+        _brick.BrickFell -= OnBrickFell;
         _brick = null;
         IsFill = false;
     }
