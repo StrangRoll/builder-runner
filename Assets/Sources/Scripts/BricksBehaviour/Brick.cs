@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Zenject;
 
 [RequireComponent(typeof(Collider))]
 [RequireComponent(typeof(Rigidbody))]
@@ -28,5 +26,10 @@ public class Brick : MonoBehaviour
     public void Fall()
     {
         _rigidbody.constraints = RigidbodyConstraints.None;
+    }
+
+    public void Kill()
+    {
+        gameObject.SetActive(false);
     }
 }

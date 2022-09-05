@@ -28,6 +28,15 @@ public class BrickCell
         _brick.BrickFell += OnBrickFell;
     }
 
+    public void RemoveBrick()
+    {
+        if (_brick != null)
+        {
+            _brick.Kill();
+            ResetCell();
+        }
+    }
+
     public void TryDropBrick()
     {
         if (_brick != null)

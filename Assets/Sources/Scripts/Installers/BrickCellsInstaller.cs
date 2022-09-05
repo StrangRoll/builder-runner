@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -35,7 +36,7 @@ public class BrickCellsInstaller : MonoInstaller
         }
 
         Container
-            .Bind<BrickCell[]>()
+            .Bind<IEnumerable<BrickCell>>()
             .FromInstance(_brickCells);
     }
 }
