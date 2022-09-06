@@ -365,6 +365,98 @@ Transform:
   m_Father: {fileID: 456763785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &308935361
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 701377908}
+    m_Modifications:
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 141.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200163194235145, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: _deltaBricks
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200163277936250, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: _deltaBricks
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6151200164137679456, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+      propertyPath: m_Name
+      value: BrickCountChangerZone
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+--- !u!4 &308935362 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6151200162360775443, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+  m_PrefabInstance: {fileID: 308935361}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &308935363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6151200163277936250, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+  m_PrefabInstance: {fileID: 308935361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471a35684015ac4b8efcb25fbe9a53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &308935364 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6151200163194235145, guid: 064d52b95562d3d4a969a6ca326d1300, type: 3}
+  m_PrefabInstance: {fileID: 308935361}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7471a35684015ac4b8efcb25fbe9a53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &456763784
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +546,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-266164
+  m_Name: pb_Mesh-1402
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -732,6 +824,7 @@ Transform:
   - {fileID: 843558901}
   - {fileID: 1727028889}
   - {fileID: 1569653769}
+  - {fileID: 308935362}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1218,7 +1311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914223416350493104, guid: a41cb8855e3b6034386faad74c457625, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 128.09
+      value: 124.09
       objectReference: {fileID: 0}
     - target: {fileID: 2914223416350493104, guid: a41cb8855e3b6034386faad74c457625, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1258,7 +1351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2914223417058892517, guid: a41cb8855e3b6034386faad74c457625, type: 3}
       propertyPath: _deltaBricks
-      value: -5
+      value: -20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a41cb8855e3b6034386faad74c457625, type: 3}
@@ -1551,6 +1644,8 @@ MonoBehaviour:
   - {fileID: 1438427054}
   - {fileID: 1634441619}
   - {fileID: 30176632}
+  - {fileID: 308935364}
+  - {fileID: 308935363}
 --- !u!1 &1409555766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1704,7 +1799,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-266178
+  m_Name: pb_Mesh-1416
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2235,6 +2330,7 @@ GameObject:
   - component: {fileID: 1969117199}
   - component: {fileID: 1034397614}
   - component: {fileID: 1969117200}
+  - component: {fileID: 1969117201}
   m_Layer: 0
   m_Name: BrickCells
   m_TagString: Untagged
@@ -2270,6 +2366,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brickPrefab: {fileID: -4577546363063612171, guid: 2b7f487100235fb429f25d4ee996d63c, type: 3}
   _parent: {fileID: 1969117199}
+--- !u!114 &1969117201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969117198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de0f18d0b777f60439f5c9df503b9511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animationTime: 0.005
 --- !u!1 &2044295654
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,6 +30,5 @@ public class Brick : MonoBehaviour
 
     public void Kill()
     {
-        gameObject.SetActive(false);
     }
 }
