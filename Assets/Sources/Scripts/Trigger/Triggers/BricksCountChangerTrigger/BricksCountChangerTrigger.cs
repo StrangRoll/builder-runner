@@ -1,18 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider))]
-public class BrickCountChangerZoneTrigger : MonoBehaviour
+public class BricksCountChangerTrigger : MonoBehaviour
 {
-    [SerializeField] private int _deltaBricks;
+    [SerializeField] protected int _deltaBricks;
 
     public event UnityAction<int> ChangeBrickCount;
-    public event UnityAction<int> SetDeltaBrick;
-    
-    private void Awake()
-    {
-        SetDeltaBrick?.Invoke(_deltaBricks);
-    }
 
     private void OnTriggerEnter(Collider other)
     {

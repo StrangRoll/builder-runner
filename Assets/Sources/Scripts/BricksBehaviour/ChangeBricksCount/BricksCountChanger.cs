@@ -11,7 +11,7 @@ public class BricksCountChanger : MonoBehaviour
 
 
     [Inject] public readonly IEnumerable<BrickCell> _brickCells;
-    [Inject] private readonly IEnumerable<BrickCountChangerZoneTrigger> _triggers;
+    [Inject] private readonly IEnumerable<BricksCountChangerTrigger> _triggers;
 
     private void Awake()
     {
