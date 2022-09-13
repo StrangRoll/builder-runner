@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
 
-public class PlayerInputRoot : MonoBehaviour
+public class PlayerInputRoot : MonoBehaviour, IInput
 {
     private bool _isPressed = false;
 
     public event Action<Vector3> Move;
-    public event Action Started;
 
     private PlayerInput _playerInput;
 
