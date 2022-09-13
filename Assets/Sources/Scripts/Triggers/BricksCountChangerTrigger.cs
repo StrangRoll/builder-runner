@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class BricksCountChangerTrigger : MonoBehaviour
+[RequireComponent(typeof(Collider))]
+public abstract class BricksCountChangerTrigger : MonoBehaviour
 {
     [SerializeField] protected int _deltaBricks;
 
@@ -13,8 +12,14 @@ public class BricksCountChangerTrigger : MonoBehaviour
     {
         if (other.gameObject.TryGetComponent(out CharacterMovier characterMovier))
         {
-            ChangeBrickCount?.Invoke(_deltaBricks);
-            gameObject.SetActive(false);
+            OnEnter();
         }
     }
+
+    protected virtual void ReadyToChangeBrickCount()
+    {
+        ChangeBrickCount?.Invoke(_deltaBricks);
+    }
+
+    protected abstract void OnEnter();
 }

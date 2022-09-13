@@ -9,8 +9,7 @@ public class BricksCountChanger : MonoBehaviour
     [SerializeField] private Brick _brickPrefab;
     [SerializeField] private Transform _parent;
 
-
-    [Inject] public readonly IEnumerable<BrickCell> _brickCells;
+    [Inject] private readonly IEnumerable<BrickCell> _brickCells;
     [Inject] private readonly IEnumerable<BricksCountChangerTrigger> _triggers;
 
     private void Awake()

@@ -1,10 +1,10 @@
 using TMPro;
 using UnityEngine;
 
-public class BrickCountChangerZoneView : MonoBehaviour
+public class BrickChangerZoneView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private BrickCountChangerZoneTrigger _brickCountChanger;
+    [SerializeField] private BrickChangerZoneTrigger _brickCountChanger;
 
     private void OnEnable()
     {
