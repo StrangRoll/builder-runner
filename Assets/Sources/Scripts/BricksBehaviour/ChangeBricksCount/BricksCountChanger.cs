@@ -10,21 +10,40 @@ public class BricksCountChanger : MonoBehaviour
     [SerializeField] private Transform _parent;
 
     [Inject] private readonly IEnumerable<BrickCell> _brickCells;
-    [Inject] private readonly IEnumerable<BricksCountChangerTrigger> _triggers;
+    [Inject] private readonly LevelSpawner _levelSpawner;
 
-    private void Awake()
+    private void OnEnable()
     {
-        foreach (var trigger in _triggers)
+        _levelSpawner.ObjectSpawned += OnObjectSpawned;
+        _levelSpawner.AllDespawned += OnAllDespawned;
+    }
+
+    private void OnDisable()
+    {
+        _levelSpawner.ObjectSpawned -= OnObjectSpawned;
+        _levelSpawner.AllDespawned -= OnAllDespawned;
+    }
+
+    private void OnAllDespawned(IEnumerable<SpawnableObject> despawnObjects)
+    {
+        foreach (var despawnObject in despawnObjects)
         {
-            trigger.ChangeBrickCount += OnChangeBrickCount;
+            var trigers = despawnObject.GetComponentsInChildren<BricksCountChangerTrigger>();
+
+            foreach (var trigger in trigers)
+            {
+                trigger.ChangeBrickCount -= OnChangeBrickCount;
+            }
         }
     }
 
-    private void OnDestroy()
+    private void OnObjectSpawned(SpawnableObject newObject)
     {
-        foreach (var trigger in _triggers)
+        var trigers = newObject.GetComponentsInChildren<BricksCountChangerTrigger>();
+
+        foreach (var trigger in trigers)
         {
-            trigger.ChangeBrickCount -= OnChangeBrickCount;
+            trigger.ChangeBrickCount += OnChangeBrickCount;
         }
     }
 
