@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerInputRoot : MonoBehaviour, IInput
+public class PlayerInputRoot : MonoBehaviour
 {
     private bool _isPressed = false;
 
