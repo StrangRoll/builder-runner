@@ -1,30 +1,26 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
+using Zenject;
 
 public class WorldInputRoot : MonoBehaviour
 {
-    public event Action Press;
+    public event Action Start;
 
-    private PlayerInput _playerInput;
-
-    private void Awake()
-    {
-        _playerInput = new PlayerInput();
-        _playerInput.Player.Press.performed += ctx => OnPress();
-    }
+    [Inject] private RunStartButton _startButton;
 
     private void OnEnable()
     {
-        _playerInput.Enable();
+        _startButton.StratButtonPressed += OnStartButtonPress;
     }
 
     private void OnDisable()
     {
-        _playerInput.Disable();
+        _startButton.StratButtonPressed -= OnStartButtonPress;
     }
 
-    private void OnPress()
+    private void OnStartButtonPress()
     {
-        Press?.Invoke();
+        Start?.Invoke();
     }
 }

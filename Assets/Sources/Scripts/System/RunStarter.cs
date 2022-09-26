@@ -12,15 +12,15 @@ public class RunStarter : MonoBehaviour
     private void OnEnable()
     {
         _root = GetComponent<WorldInputRoot>();
-        _root.Press += OnPress;
+        _root.Start += OnStart;
     }
 
     private void OnDisable()
     {
-        _root.Press += OnPress;
+        _root.Start += OnStart;
     }
 
-    private void OnPress()
+    private void OnStart()
     {
         if (_isRunStarted == false)
         {
