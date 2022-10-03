@@ -1,4 +1,5 @@
 using UnityEngine;
+using Zenject;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerInputRoot))]
@@ -8,6 +9,8 @@ public class CharacterMovier : MonoBehaviour
     [SerializeField] private float _turnSpeed;
     [SerializeField] private Transform _road;
     [SerializeField] private float _roadWidth;
+
+    [Inject] private RunStarter _runStarter;
 
     private Rigidbody _rigidbody;
     private bool _isMoving = false;
@@ -24,6 +27,7 @@ public class CharacterMovier : MonoBehaviour
     private void OnEnable()
     {
         playerInputRoot.Move += OnMove;
+        _runStarter.RunStarted += OnRunStarted;
     }
 
     private void FixedUpdate()
@@ -39,14 +43,17 @@ public class CharacterMovier : MonoBehaviour
     private void OnDisable()
     {
         playerInputRoot.Move -= OnMove;
+        _runStarter.RunStarted -= OnRunStarted;
     }
 
     public void OnMove(Vector3 delta)
     {
-        if (_isMoving == false)
-            _isMoving = true;
-
         if (((transform.position + delta).x > _road.position.x - _roadWidth) && ((transform.position + delta).x < _road.position.x + _roadWidth))
             _moveSide += delta * _turnSpeed;
+    }
+
+    private void OnRunStarted()
+    {
+        _isMoving = true;
     }
 }
