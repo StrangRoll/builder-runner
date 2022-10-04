@@ -1,15 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class OnStartDeactivator : MonoBehaviour
+[RequireComponent(typeof(CanvasGroup))]
+public class StartMenuActivationChanger : MonoBehaviour
 {
     [Inject] private RunStarter _runStarter;
+
+    private CanvasGroup _canvasGroup;
 
     private void OnEnable()
     {
         _runStarter.RunStarted += OnRunStarted;
+        _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void OnDisable()
@@ -19,6 +21,6 @@ public class OnStartDeactivator : MonoBehaviour
 
     private void OnRunStarted()
     {
-        gameObject.SetActive(false);
+        _canvasGroup.alpha = 0;
     }
 }

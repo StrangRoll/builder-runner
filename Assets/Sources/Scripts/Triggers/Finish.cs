@@ -6,14 +6,16 @@ public class Finish : MonoBehaviour
 {
     [Inject] private BricksCounter _bricksCounter;
 
-    public event UnityAction<int> PlayerFinish;
+    public event UnityAction PlayerFinish;
+    public event UnityAction<int> EndBrickCounted;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.TryGetComponent(out CharacterMovier characterMovier))
         {
             var bricksCount = _bricksCounter.CountBricks();
-            PlayerFinish?.Invoke(bricksCount);
+            PlayerFinish?.Invoke();
+            EndBrickCounted?.Invoke(bricksCount);
         }
     }
 }
