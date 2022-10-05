@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +6,7 @@ using Zenject;
 public class CharacterAnimationController : MonoBehaviour
 {
     [Inject] private RunStarter _runStarter;
+    [Inject] private Finish _finish;
 
     private Animator _animator;
 
@@ -19,20 +18,28 @@ public class CharacterAnimationController : MonoBehaviour
     private void OnEnable()
     {
         _runStarter.RunStarted += OnRunStarted;
+        _finish.PlayerFinish += OnPlayerFinish;
     }
 
     private void OnDisable()
     {
         _runStarter.RunStarted -= OnRunStarted;
+        _finish.PlayerFinish -= OnPlayerFinish;
     }
 
-    public void OnRunStarted()
+    private void OnRunStarted()
     {
         _animator.SetTrigger(CharacterAnimatorParameters.RunStartTrigger);
+    }
+
+    private void OnPlayerFinish()
+    {
+        _animator.SetTrigger(CharacterAnimatorParameters.RunEndedTrigger);
     }
 }
 
 public static class CharacterAnimatorParameters
 {
     public static string RunStartTrigger = "RunStarted";
+    public static string RunEndedTrigger = "RunEnded";
 }
