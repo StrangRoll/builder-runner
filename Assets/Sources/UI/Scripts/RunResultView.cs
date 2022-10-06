@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,12 +16,14 @@ public class RunResultView : MonoBehaviour
     {
         _runResultCalculator.BrickResultDone += OnBrickResultDone;
         _runResultCalculator.EarnedMoneyResultDone += OnEarnedMoneyResultDone;
+        _runResultCalculator.PlayerMoneyResultDone += OnPlayerMoneyResultDone;
     }
 
     private void OnDisable()
     {
         _runResultCalculator.BrickResultDone -= OnBrickResultDone;
         _runResultCalculator.EarnedMoneyResultDone -= OnEarnedMoneyResultDone;
+        _runResultCalculator.PlayerMoneyResultDone -= OnPlayerMoneyResultDone;
     }
 
     private void OnBrickResultDone(float bricks, float bricksModifier, float collectedBricks)
@@ -31,6 +33,11 @@ public class RunResultView : MonoBehaviour
 
     private void OnEarnedMoneyResultDone(float bricks, float priceModifier, float earnedMoney)
     {
-        _earnedMoneyResultText.text = bricks.ToString() + " X " + priceModifier.ToString() + " = " + earnedMoney.ToString();
+        _earnedMoneyResultText.text = bricks.ToString() + " X " + priceModifier.ToString() + "₲ = " + earnedMoney.ToString() + "₲";
+    }
+
+    private void OnPlayerMoneyResultDone(float money, float earnedMoney, float newMoney)
+    {
+        _playerMoneyResultText.text = money.ToString() + "₲ + " + earnedMoney.ToString() + "₲ = " + newMoney.ToString() + "₲";
     }
 }
