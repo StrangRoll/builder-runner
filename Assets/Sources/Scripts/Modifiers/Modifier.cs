@@ -1,23 +1,23 @@
 using System;
-using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
 
 public abstract class Modifier 
 {
-    protected float _increaseStep = 0.1f;
-    protected float _priceMultiplier = 1.1f;
-    protected float _improvementPrice = 100;
+    private float _increaseStep = 0.1f;
+    private float _priceMultiplier = 1.1f;
 
     [Inject] private PlayerWallet _playerWallet;
 
+    public float ImprovementPrice { get; private set; } = 100;
     public float ModifierValue { get; private set; } = 1.0f;
 
     public event UnityAction ModifierValueChanged;
+    public event UnityAction ModifierPriceChanged;
 
     public void BuyNextLevel()
     {
-        if (_playerWallet.TryMakePurchase(_improvementPrice))
+        if (_playerWallet.TryMakePurchase(ImprovementPrice))
         {
             OnPurchaseMade();
         }
@@ -25,8 +25,9 @@ public abstract class Modifier
 
     private void OnPurchaseMade()
     {
-        _improvementPrice *= _priceMultiplier;
-        _improvementPrice = (float)Math.Round(_improvementPrice, 1);
+        ImprovementPrice *= _priceMultiplier;
+        ImprovementPrice = (float)Math.Round(ImprovementPrice, 1);
+        ModifierPriceChanged?.Invoke();
 
         ModifierValue += _increaseStep;
         ModifierValue = (float)Math.Round(ModifierValue, 1);
