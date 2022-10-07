@@ -13,16 +13,33 @@ public class PlayerWallet : MonoBehaviour
     private void OnEnable()
     {
         _runResultCalculator.MoneyEarned += OnMoneyEarned;
+        PlayerMoneyChaged?.Invoke(Money);
     }
 
-    private void OnDisable()
+    private void OnDisable() 
     {
         _runResultCalculator.MoneyEarned -= OnMoneyEarned;
     }
 
+    public bool TryMakePurchase(float neededMoney)
+    {
+        if (Money >= neededMoney)
+        {
+            ChangePlayerMoney(neededMoney * (-1));
+            return true;
+        }
+
+        return false;
+    }
+
     private void OnMoneyEarned(float earnedMoney)
     {
-        Money += earnedMoney;
+        ChangePlayerMoney(earnedMoney);
+    }
+
+    private void ChangePlayerMoney(float deltaMoney)
+    {
+        Money += deltaMoney;
         PlayerMoneyChaged?.Invoke(Money);
     }
 }

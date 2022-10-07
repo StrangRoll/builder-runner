@@ -8,15 +8,23 @@ public class BrickPriceModifierView : MonoBehaviour
     [SerializeField] private Button _brickPriceModifierButton;
     [SerializeField] private TMP_Text _brickPriceModifierText;
 
-    [Inject] private BrickPriceModifier _modifier;
+    [Inject] private BrickPriceModifier _priceModifier;
 
-    private void Awake()
+    private void OnEnable()
     {
-        OnBrickPriceChanged();
+        _priceModifier.ModifierValueChanged += OnModifierValueChanged;
+        _brickPriceModifierButton.onClick.AddListener(_priceModifier.BuyNextLevel);
+        OnModifierValueChanged();
     }
 
-    private void OnBrickPriceChanged()
+    private void OnDisable()
     {
-        _brickPriceModifierText.text = _modifier.BrickPrice.ToString() + " ₲";
+        _priceModifier.ModifierValueChanged -= OnModifierValueChanged;
+        _brickPriceModifierButton.onClick.RemoveListener(_priceModifier.BuyNextLevel);
+    }
+
+    private void OnModifierValueChanged()
+    {
+        _brickPriceModifierText.text = _priceModifier.ModifierValue.ToString() + " ₲";
     }
 }

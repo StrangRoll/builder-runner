@@ -26,11 +26,11 @@ public class RunResultCalculator : MonoBehaviour
 
     private void OnEndBrickCounted(int bricks)
     {
-        var brickModifier = _brickModifier.BrickCountModifier;
+        var brickModifier = _brickModifier.ModifierValue;
         var collectedBricks = bricks * brickModifier;
         BrickResultDone?.Invoke(bricks, brickModifier, collectedBricks);
 
-        var priceModifier = _priceModifier.BrickPrice;
+        var priceModifier = _priceModifier.ModifierValue;
         var earnedMoney = collectedBricks * priceModifier;
         EarnedMoneyResultDone?.Invoke(collectedBricks, priceModifier, earnedMoney);
 
