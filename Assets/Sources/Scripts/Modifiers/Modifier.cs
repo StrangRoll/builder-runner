@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -25,7 +26,10 @@ public abstract class Modifier
     private void OnPurchaseMade()
     {
         _improvementPrice *= _priceMultiplier;
+        _improvementPrice = (float)Math.Round(_improvementPrice, 1);
+
         ModifierValue += _increaseStep;
+        ModifierValue = (float)Math.Round(ModifierValue, 1);
         ModifierValueChanged?.Invoke();
     }
 }

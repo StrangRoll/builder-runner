@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using Zenject;
@@ -6,7 +7,7 @@ public class PlayerWallet : MonoBehaviour
 {
     [Inject] private RunResultCalculator _runResultCalculator;
 
-    public float Money { get; private set; } = 0;
+    public float Money { get; private set; } = 10000;
 
     public event UnityAction<float> PlayerMoneyChaged;
 
@@ -40,6 +41,7 @@ public class PlayerWallet : MonoBehaviour
     private void ChangePlayerMoney(float deltaMoney)
     {
         Money += deltaMoney;
+        Money = (float)Math.Round(Money, 1);
         PlayerMoneyChaged?.Invoke(Money);
     }
 }
