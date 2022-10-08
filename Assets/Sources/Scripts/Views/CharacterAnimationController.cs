@@ -5,7 +5,7 @@ using Zenject;
 
 public class CharacterAnimationController : MonoBehaviour
 {
-    [Inject] private RunStarter _runStarter;
+    [Inject] private WorldInputRoot _runStarter;
     [Inject] private Finish _finish;
 
     private Animator _animator;

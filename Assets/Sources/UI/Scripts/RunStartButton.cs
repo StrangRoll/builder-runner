@@ -1,13 +1,25 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class RunStartButton : MonoBehaviour, IPointerDownHandler
+public class RunStartButton : MonoBehaviour
 {
-    public event UnityAction StratButtonPressed;
+    [SerializeField] private Button _runControlButton;
 
-    public void OnPointerDown(PointerEventData eventData)
+    public event UnityAction RunControlButtonPressed;
+
+    private void OnEnable()
     {
-        StratButtonPressed?.Invoke();
+        _runControlButton.onClick.AddListener(OnRunControlButtonPressedClick);
+    }
+
+    private void OnDisable()
+    {
+        _runControlButton.onClick.RemoveListener(OnRunControlButtonPressedClick);
+    }
+
+    public void OnRunControlButtonPressedClick()
+    {
+        RunControlButtonPressed?.Invoke();
     }
 }

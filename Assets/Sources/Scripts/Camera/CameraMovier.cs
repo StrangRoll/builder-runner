@@ -6,18 +6,18 @@ public class CameraMovier : MonoBehaviour
 {
     [SerializeField] private Transform _gamePosition;
 
-    [Inject] private RunStarter _runStarter;
+    [Inject] private WorldInputRoot _worldInput;
 
     private float _speed = 1.5f;
 
     private void OnEnable()
     {
-        _runStarter.RunStarted += OnRunStarted;
+        _worldInput.RunStarted += OnRunStarted;
     }
 
     private void OnDisable()
     {
-        _runStarter.RunStarted += OnRunStarted;
+        _worldInput.RunStarted += OnRunStarted;
     }
 
     private void OnRunStarted()

@@ -4,7 +4,7 @@ using Zenject;
 [RequireComponent(typeof(CanvasGroup))]
 public class StartMenuActivationChanger : MonoBehaviour
 {
-    [Inject] private RunStarter _runStarter;
+    [Inject] private WorldInputRoot _runStarter;
 
     private CanvasGroup _canvasGroup;
 

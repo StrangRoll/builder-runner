@@ -437,7 +437,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 139.3
+  m_fontSize: 139.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2172,6 +2172,7 @@ GameObject:
   - component: {fileID: 812670214}
   - component: {fileID: 812670213}
   - component: {fileID: 812670217}
+  - component: {fileID: 812670219}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2274,6 +2275,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812670219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812670212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cffd3d4bcfaf94e4181d0b5445a7b292, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &815765263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3338,9 +3351,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1152578115}
   - component: {fileID: 1152578116}
-  - component: {fileID: 1152578117}
   m_Layer: 0
-  m_Name: RunStarter
+  m_Name: WorldInputRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3369,19 +3381,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1152578114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aae089b40620af4ba634081c93da7b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1152578117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152578114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a23f783404d2e4ca5bf4688c2b83e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 65d829b798fc0784eba7020efb89e330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1168681399
@@ -4195,7 +4195,7 @@ GameObject:
   - component: {fileID: 1488909431}
   - component: {fileID: 1488909432}
   m_Layer: 5
-  m_Name: RunStartButton
+  m_Name: RunControlButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4326,6 +4326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 270b6e608becbca47ab9dfcb873762ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _runControlButton: {fileID: 1488909428}
 --- !u!225 &1488909432
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4873,7 +4874,7 @@ GameObject:
   - component: {fileID: 1765430805}
   - component: {fileID: 1765430806}
   m_Layer: 0
-  m_Name: RunStarterInstaller
+  m_Name: WorldInputRootInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4905,7 +4906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c79cdf03b6bd664b9aae9d9c6e3453e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _runStarter: {fileID: 1152578116}
+  _worldInputRoot: {fileID: 1152578116}
 --- !u!1 &1794497442
 GameObject:
   m_ObjectHideFlags: 0
@@ -5516,7 +5517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8111581057323605567, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.35830688
+      value: -0.35827637
       objectReference: {fileID: 0}
     - target: {fileID: 8111581057323605567, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6233,7 +6234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6025315536610919123, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000038146973
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6301357213920146833, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_Name
@@ -6317,7 +6318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8111581057323605567, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.42832947
+      value: 0.4283142
       objectReference: {fileID: 0}
     - target: {fileID: 8111581057323605567, guid: 38c48c4f4eb86924bb649f24b2c339dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
