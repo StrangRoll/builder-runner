@@ -4,23 +4,30 @@ using Zenject;
 [RequireComponent(typeof(CanvasGroup))]
 public class StartMenuActivationChanger : MonoBehaviour
 {
-    [Inject] private WorldInputRoot _runStarter;
+    [Inject] private WorldInputRoot _worldInput;
 
     private CanvasGroup _canvasGroup;
 
     private void OnEnable()
     {
-        _runStarter.RunStarted += OnRunStarted;
+        _worldInput.RunStarted += OnRunStarted;
+        _worldInput.LevelEnded += OnLevelEnded;
         _canvasGroup = GetComponent<CanvasGroup>();
     }
 
     private void OnDisable()
     {
-        _runStarter.RunStarted -= OnRunStarted;
+        _worldInput.RunStarted -= OnRunStarted;
+        _worldInput.LevelEnded -= OnLevelEnded;
     }
 
     private void OnRunStarted()
     {
         _canvasGroup.alpha = 0;
+    }
+
+    private void OnLevelEnded()
+    {
+        _canvasGroup.alpha = 1;
     }
 }

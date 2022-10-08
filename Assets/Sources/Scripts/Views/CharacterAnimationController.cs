@@ -5,7 +5,7 @@ using Zenject;
 
 public class CharacterAnimationController : MonoBehaviour
 {
-    [Inject] private WorldInputRoot _runStarter;
+    [Inject] private WorldInputRoot _worldInput;
     [Inject] private Finish _finish;
 
     private Animator _animator;
@@ -17,14 +17,21 @@ public class CharacterAnimationController : MonoBehaviour
 
     private void OnEnable()
     {
-        _runStarter.RunStarted += OnRunStarted;
+        _worldInput.RunStarted += OnRunStarted;
+        _worldInput.LevelEnded += OnLevelEnded;
         _finish.PlayerFinish += OnPlayerFinish;
     }
 
     private void OnDisable()
     {
-        _runStarter.RunStarted -= OnRunStarted;
+        _worldInput.RunStarted -= OnRunStarted;
+        _worldInput.LevelEnded -= OnLevelEnded;
         _finish.PlayerFinish -= OnPlayerFinish;
+    }
+
+    private void OnLevelEnded()
+    {
+        _animator.SetTrigger(CharacterAnimatorParameters.RunRestartedTrigger);
     }
 
     private void OnRunStarted()
@@ -42,4 +49,5 @@ public static class CharacterAnimatorParameters
 {
     public static string RunStartTrigger = "RunStarted";
     public static string RunEndedTrigger = "RunEnded";
+    public static string RunRestartedTrigger = "RunRestarted";
 }
