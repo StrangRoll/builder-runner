@@ -1,19 +1,22 @@
 using TMPro;
 using UnityEngine;
 
+[RequireComponent (typeof(BrickChangerZoneTrigger))]
 public class BrickChangerZoneView : MonoBehaviour
 {
     [SerializeField] private TMP_Text _text;
-    [SerializeField] private BrickChangerZoneTrigger _brickCountChanger;
+
+    private BrickChangerZoneTrigger _brickCountChanger;
 
     private void OnEnable()
     {
+        _brickCountChanger = GetComponent<BrickChangerZoneTrigger>();
         _brickCountChanger.SetDeltaBrick += OnSetDeltaBrick;
     }
 
     private void OnDisable()
     {
-        _brickCountChanger.SetDeltaBrick += OnSetDeltaBrick;
+        _brickCountChanger.SetDeltaBrick -= OnSetDeltaBrick;
     }
 
     private void OnSetDeltaBrick(int deltaBrick)

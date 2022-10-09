@@ -37,6 +37,6 @@ public class RunResultCalculator : MonoBehaviour
         var playerMoney = _playerWallet.Money;
         var newPlayerMoney = playerMoney + earnedMoney;
         PlayerMoneyResultDone?.Invoke(playerMoney, earnedMoney, newPlayerMoney);
-        MoneyEarned?.Invoke(newPlayerMoney);
+        MoneyEarned?.Invoke(earnedMoney);
     }
 }
