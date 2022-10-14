@@ -24,10 +24,14 @@ public class StartMenuActivationChanger : MonoBehaviour
     private void OnRunStarted()
     {
         _canvasGroup.alpha = 0;
+        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     private void OnLevelEnded()
     {
         _canvasGroup.alpha = 1;
+        _canvasGroup.interactable = true;
+        _canvasGroup.blocksRaycasts = true;
     }
 }

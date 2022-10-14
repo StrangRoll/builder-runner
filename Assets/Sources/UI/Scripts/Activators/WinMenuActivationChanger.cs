@@ -26,10 +26,14 @@ public class WinMenuActivationChanger : MonoBehaviour
     private void OnPlayerFinish()
     {
         _canvasGroup.alpha = 1;
+        _canvasGroup.interactable = true;
+        _canvasGroup.blocksRaycasts = true;
     }
 
     private void OnLevelEnded()
     {
         _canvasGroup.alpha = 0;
+        _canvasGroup.interactable = false;
+        _canvasGroup.blocksRaycasts = false;
     }
 }

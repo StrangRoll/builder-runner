@@ -9,7 +9,7 @@ public class BricksPileView : MonoBehaviour
     [Inject] BrickCellFinder _brickCellFinder;
     [Inject] Transform _playersBrickParent;
 
-    private float _jumpDuration = 1.5f;
+    private float _jumpDuration = 1.1f;
     private float _jumpPower = 3f;
     private BricksPileTrigger _trigger;
     private int _jumpsCount = 1;
