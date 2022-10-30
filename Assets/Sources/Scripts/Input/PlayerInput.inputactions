@@ -20,6 +20,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "ChangeRunState",
+                    "type": "Button",
+                    "id": "d49e6403-db00-4da6-b48e-3b2cd8604317",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(duration=0.2)"
                 }
             ],
             "bindings": [
@@ -64,6 +72,28 @@
                     "processors": "",
                     "groups": "Touchscreen",
                     "action": "Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "56ce848f-508d-49df-b434-99777cc83fc3",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mouse",
+                    "action": "ChangeRunState",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "febb20bb-1eee-4903-8391-137b90f280a3",
+                    "path": "<Touchscreen>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Touchscreen",
+                    "action": "ChangeRunState",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

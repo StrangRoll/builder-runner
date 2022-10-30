@@ -5,7 +5,7 @@ public class BrickChangerZoneTrigger : BricksCountChangerTrigger
 {
     public event UnityAction<int> SetDeltaBrick;
 
-    private void Awake()
+    private void Start()
     {
         SetDeltaBrick?.Invoke(_deltaBricks);
     }

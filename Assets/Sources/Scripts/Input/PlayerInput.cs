@@ -33,6 +33,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""ChangeRunState"",
+                    ""type"": ""Button"",
+                    ""id"": ""d49e6403-db00-4da6-b48e-3b2cd8604317"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(duration=0.2)""
                 }
             ],
             ""bindings"": [
@@ -79,6 +87,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Press"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""56ce848f-508d-49df-b434-99777cc83fc3"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse"",
+                    ""action"": ""ChangeRunState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""febb20bb-1eee-4903-8391-137b90f280a3"",
+                    ""path"": ""<Touchscreen>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Touchscreen"",
+                    ""action"": ""ChangeRunState"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -112,6 +142,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_SideMove = m_Player.FindAction("SideMove", throwIfNotFound: true);
         m_Player_Press = m_Player.FindAction("Press", throwIfNotFound: true);
+        m_Player_ChangeRunState = m_Player.FindAction("ChangeRunState", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -163,12 +194,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private IPlayerActions m_PlayerActionsCallbackInterface;
     private readonly InputAction m_Player_SideMove;
     private readonly InputAction m_Player_Press;
+    private readonly InputAction m_Player_ChangeRunState;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @SideMove => m_Wrapper.m_Player_SideMove;
         public InputAction @Press => m_Wrapper.m_Player_Press;
+        public InputAction @ChangeRunState => m_Wrapper.m_Player_ChangeRunState;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -184,6 +217,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Press.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPress;
                 @Press.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPress;
                 @Press.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPress;
+                @ChangeRunState.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeRunState;
+                @ChangeRunState.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeRunState;
+                @ChangeRunState.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnChangeRunState;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -194,6 +230,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Press.started += instance.OnPress;
                 @Press.performed += instance.OnPress;
                 @Press.canceled += instance.OnPress;
+                @ChangeRunState.started += instance.OnChangeRunState;
+                @ChangeRunState.performed += instance.OnChangeRunState;
+                @ChangeRunState.canceled += instance.OnChangeRunState;
             }
         }
     }
@@ -220,5 +259,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     {
         void OnSideMove(InputAction.CallbackContext context);
         void OnPress(InputAction.CallbackContext context);
+        void OnChangeRunState(InputAction.CallbackContext context);
     }
 }

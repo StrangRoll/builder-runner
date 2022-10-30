@@ -10,7 +10,8 @@ public class CharacterMovier : MonoBehaviour
     [SerializeField] private Transform _road;
     [SerializeField] private float _roadWidth;
 
-    [Inject] private RunStarter _runStarter;
+    [Inject] private WorldInputRoot _worldRoot;
+    [Inject] private Finish _finish;
 
     private Rigidbody _rigidbody;
     private bool _isMoving = false;
@@ -27,7 +28,8 @@ public class CharacterMovier : MonoBehaviour
     private void OnEnable()
     {
         playerInputRoot.Move += OnMove;
-        _runStarter.RunStarted += OnRunStarted;
+        _worldRoot.RunStarted += OnRunStarted;
+        _finish.PlayerFinish += OnPlayerFinish;
     }
 
     private void FixedUpdate()
@@ -43,7 +45,8 @@ public class CharacterMovier : MonoBehaviour
     private void OnDisable()
     {
         playerInputRoot.Move -= OnMove;
-        _runStarter.RunStarted -= OnRunStarted;
+        _worldRoot.RunStarted -= OnRunStarted;
+        _finish.PlayerFinish -= OnPlayerFinish;
     }
 
     public void OnMove(Vector3 delta)
@@ -55,5 +58,11 @@ public class CharacterMovier : MonoBehaviour
     private void OnRunStarted()
     {
         _isMoving = true;
+    }
+
+    private void OnPlayerFinish()
+    {
+        _isMoving = false;
+        _rigidbody.velocity = Vector3.zero;
     }
 }

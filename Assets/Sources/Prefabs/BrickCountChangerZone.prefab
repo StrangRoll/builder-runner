@@ -539,7 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 6151200162353266391}
-  _brickCountChanger: {fileID: 6151200163277936250}
 --- !u!1 &6151200163155202328
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +744,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _text: {fileID: 6151200164296416758}
-  _brickCountChanger: {fileID: 6151200163194235145}
 --- !u!1 &6151200163829802103
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +849,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6151200164137679456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11403995, y: -6.4907002, z: 13.900011}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6151200163829802102}
