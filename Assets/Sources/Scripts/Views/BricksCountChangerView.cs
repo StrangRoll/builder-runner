@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+[RequireComponent(typeof (SoundPlayer))]
 public class BricksCountChangerView : MonoBehaviour
 {
     [SerializeField] private float _animationTime;
@@ -12,9 +13,11 @@ public class BricksCountChangerView : MonoBehaviour
     private bool _isRunning = false;
     private WaitForSeconds _whaitEndOfAnimationTime;
     private Queue<IEnumerator> _actionQueue;
+    private SoundPlayer _countChangerSound;
 
     private void Awake()
     {
+        _countChangerSound = GetComponent<SoundPlayer>();
         _whaitEndOfAnimationTime = new WaitForSeconds(_animationTime);
         _actionQueue = new Queue<IEnumerator>();
 
@@ -66,6 +69,7 @@ public class BricksCountChangerView : MonoBehaviour
 
     private IEnumerator AddingAnimation(Brick brick)
     {
+        _countChangerSound.PlaySound();
         brick.GetComponent<MeshRenderer>().enabled = true;
         yield return _whaitEndOfAnimationTime;
         TryDoNextAnimation();
@@ -73,6 +77,7 @@ public class BricksCountChangerView : MonoBehaviour
 
     private IEnumerator RemovingAnimation(Brick brick)
     {
+        _countChangerSound.PlaySound();
         brick.gameObject.SetActive(false);
         yield return _whaitEndOfAnimationTime;
         TryDoNextAnimation();

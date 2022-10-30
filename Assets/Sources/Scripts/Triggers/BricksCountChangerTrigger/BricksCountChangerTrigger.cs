@@ -8,12 +8,24 @@ public abstract class BricksCountChangerTrigger : MonoBehaviour
 
     public event UnityAction<int> ChangeBrickCount;
 
+    private BrickCountChangeTriggerResetter TriggerResetter;
+
+    private void Awake()
+    {
+        TriggerResetter = new BrickCountChangeTriggerResetter(transform);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.TryGetComponent(out CharacterMovier characterMovier))
         {
             OnEnter();
         }
+    }
+
+    public virtual void ResetTrigger()
+    {
+        TriggerResetter.ResetTrigger();
     }
 
     protected virtual void ReadyToChangeBrickCount()

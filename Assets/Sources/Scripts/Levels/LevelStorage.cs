@@ -7,28 +7,22 @@ public class LevelStorage : MonoBehaviour
 {
     [Inject] private WorldInputRoot _worldInputRoot;
 
-    private List<StandartLevel> _standartLevels;
-    private FinalLevel _finalLevel;
-    private StandartLevel _nextLevel;
+    private IEnumerable<Level> _allLevels;
+    private List<Level> _levels;
+    private Level _nextLevel;
 
     public event UnityAction<Level> ChangeLevel;
 
     private void Awake()
     {
-        _standartLevels = new List<StandartLevel>(GetComponentsInChildren<StandartLevel>());
+        _allLevels = new List<Level>(GetComponentsInChildren<Level>());
 
-        foreach (var level in _standartLevels)
+        foreach (var level in _allLevels)
         {
             level.gameObject.SetActive(false);
         }
 
-        if (GetComponentsInChildren<FinalLevel>().Length != 1)
-        {
-            Debug.LogError("Incorrect finish level count!");
-        }
-
-        _finalLevel = GetComponentInChildren<FinalLevel>();
-        _finalLevel.gameObject.SetActive(false);
+        ResetLevels();
     }
 
     private void OnEnable()
@@ -48,16 +42,19 @@ public class LevelStorage : MonoBehaviour
 
     private void OnLevelEnded()
     {
-        if (_standartLevels.Count > 0)
+        if (_levels.Count <= 0)
         {
-            var index = Random.Range(0, _standartLevels.Count);
-            _nextLevel = _standartLevels[index];
-            _standartLevels.RemoveAt(index);
-            ChangeLevel.Invoke(_nextLevel);
+            ResetLevels();
         }
-        else
-        {
-            ChangeLevel?.Invoke(_finalLevel);
-        }
+
+        var index = Random.Range(0, _levels.Count);
+        _nextLevel = _levels[index];
+        _levels.RemoveAt(index);
+        ChangeLevel.Invoke(_nextLevel);
+    }
+
+    private void ResetLevels()
+    {
+        _levels = new List<Level>(_allLevels);
     }
 }
